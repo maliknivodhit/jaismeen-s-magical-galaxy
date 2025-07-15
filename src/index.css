@@ -2,41 +2,63 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Magical Birthday Journey Design System - All colors MUST be HSL */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Magical Background Colors */
+    --background: 340 15% 97%; /* Soft pearl white with hint of pink */
+    --foreground: 340 25% 15%; /* Deep elegant plum */
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    /* Card Colors */
+    --card: 340 20% 98%; /* Softer pearl for cards */
+    --card-foreground: 340 25% 15%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    /* Popover Colors */
+    --popover: 340 20% 98%;
+    --popover-foreground: 340 25% 15%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Primary - Magical Pink */
+    --primary: 320 60% 70%; /* Soft magical pink */
+    --primary-foreground: 340 20% 98%;
+    --primary-glow: 320 70% 80%; /* Lighter glow version */
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Secondary - Lavender Dreams */
+    --secondary: 280 40% 85%; /* Soft lavender */
+    --secondary-foreground: 340 25% 15%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Muted Colors */
+    --muted: 340 10% 92%;
+    --muted-foreground: 340 15% 45%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Accent - Celestial Blue */
+    --accent: 220 60% 80%; /* Soft sky blue */
+    --accent-foreground: 340 25% 15%;
 
+    /* Destructive */
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 340 20% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    /* Borders and inputs */
+    --border: 340 20% 90%;
+    --input: 340 20% 95%;
+    --ring: 320 60% 70%;
 
-    --radius: 0.5rem;
+    /* Magical Gradients */
+    --gradient-magical: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)));
+    --gradient-fairy: linear-gradient(180deg, hsl(var(--background)), hsl(var(--secondary)));
+    --gradient-sparkle: radial-gradient(circle, hsl(var(--primary-glow) / 0.6), transparent);
+    
+    /* Shadows with magical glow */
+    --shadow-magical: 0 10px 40px -15px hsl(var(--primary) / 0.4);
+    --shadow-glow: 0 0 30px hsl(var(--primary-glow) / 0.5);
+    --shadow-sparkle: 0 5px 20px hsl(var(--accent) / 0.3);
+
+    /* Animations */
+    --transition-magical: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-sparkle: all 0.6s ease-in-out;
+
+    --radius: 1rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -101,5 +123,123 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    background: var(--gradient-fairy);
+    font-family: 'Georgia', 'Times New Roman', serif;
   }
+
+  /* Import magical fonts */
+  @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Playfair+Display:wght@400;700;800&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap');
+}
+
+/* Magical animations and utilities */
+@layer utilities {
+  .font-script {
+    font-family: 'Dancing Script', cursive;
+  }
+  
+  .font-elegant {
+    font-family: 'Playfair Display', serif;
+  }
+  
+  .font-vintage {
+    font-family: 'Crimson Text', serif;
+  }
+
+  .bg-magical {
+    background: var(--gradient-magical);
+  }
+  
+  .bg-fairy {
+    background: var(--gradient-fairy);
+  }
+  
+  .shadow-magical {
+    box-shadow: var(--shadow-magical);
+  }
+  
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+  
+  .shadow-sparkle {
+    box-shadow: var(--shadow-sparkle);
+  }
+  
+  .transition-magical {
+    transition: var(--transition-magical);
+  }
+  
+  .sparkle {
+    position: relative;
+  }
+  
+  .sparkle::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: var(--gradient-sparkle);
+    border-radius: inherit;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+  }
+  
+  .sparkle:hover::before {
+    opacity: 1;
+  }
+}
+
+/* Keyframes for magical animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0; transform: scale(0); }
+  50% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes glow {
+  0%, 100% { box-shadow: 0 0 5px hsl(var(--primary) / 0.3); }
+  50% { box-shadow: 0 0 20px hsl(var(--primary) / 0.6); }
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-sparkle {
+  animation: sparkle 2s ease-in-out infinite;
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite;
+}
+
+.animate-twinkle {
+  animation: twinkle 1.5s ease-in-out infinite;
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 0.6s ease-out forwards;
 }
