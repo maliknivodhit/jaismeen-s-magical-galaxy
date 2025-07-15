@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
@@ -14,9 +14,17 @@ export default function LockedIntro({ onUnlock }: LockedIntroProps) {
   const [secretCode, setSecretCode] = useState('');
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isUnlocked, setIsUnlocked] = useState(false);
+  const audioRef = useRef<HTMLAudioElement>(null);
 
   // Birthday date - July 28, 2024
   const birthdayDate = new Date('2024-07-28T00:00:00');
+
+  useEffect(() => {
+    // Start playing background music
+    if (audioRef.current) {
+      audioRef.current.play().catch(console.error);
+    }
+  }, []);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -148,6 +156,17 @@ export default function LockedIntro({ onUnlock }: LockedIntroProps) {
           )}
         </div>
       </Card>
+
+      {/* Background Music */}
+      <audio 
+        ref={audioRef} 
+        loop 
+        preload="auto"
+        className="hidden"
+      >
+        <source src="/magical-music.mp3" type="audio/mpeg" />
+        <source src="https://www.soundjay.com/misc/sounds/magic-chime-02.mp3" type="audio/mpeg" />
+      </audio>
     </div>
   );
 }
