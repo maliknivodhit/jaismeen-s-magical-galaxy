@@ -16,41 +16,48 @@ export default function LockedIntro({ onUnlock }: LockedIntroProps) {
   const [isUnlocked, setIsUnlocked] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
 
-  // Birthday date - July 28, 2024
-  const birthdayDate = new Date('2024-07-28T00:00:00');
+  // Birthday date - July 28, 2025
+  const birthdayDate = new Date('2025-07-28T00:00:00');
 
   useEffect(() => {
+    // Check localStorage for early unlock
+    const unlocked = localStorage.getItem('jaismeen_unlocked') === 'true';
+    if (unlocked) {
+      setIsUnlocked(true);
+      onUnlock();
+    }
     // Start playing background music
     if (audioRef.current) {
-      audioRef.current.play().catch(console.error);
+      audioRef.current.play().catch(() => {});
     }
-  }, []);
+  }, [onUnlock]);
 
   useEffect(() => {
     const timer = setInterval(() => {
       const now = new Date();
       const difference = birthdayDate.getTime() - now.getTime();
-
       if (difference <= 0) {
         setIsUnlocked(true);
         setTimeLeft('🎉 It\'s time! 🎉');
+        localStorage.setItem('jaismeen_unlocked', 'true');
+        onUnlock();
       } else {
         const days = Math.floor(difference / (1000 * 60 * 60 * 24));
         const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-
         setTimeLeft(`${days}d ${hours}h ${minutes}m ${seconds}s`);
       }
     }, 1000);
-
     return () => clearInterval(timer);
-  }, [birthdayDate]);
+  }, [birthdayDate, onUnlock]);
 
   const handleCodeSubmit = () => {
     if (secretCode === '6125') {
       setIsUnlocked(true);
       setIsDialogOpen(false);
+      localStorage.setItem('jaismeen_unlocked', 'true');
+      onUnlock();
     }
   };
 
