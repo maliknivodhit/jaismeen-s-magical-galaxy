@@ -16,8 +16,8 @@ export default function LockedIntro({ onUnlock }: LockedIntroProps) {
   const [isUnlocked, setIsUnlocked] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
 
-  // Birthday date - July 28, 2025
-  const birthdayDate = new Date('2025-07-28T00:00:00');
+  // Birthday date - September 25, 2025
+  const birthdayDate = new Date('2025-09-25T00:00:00');
 
   useEffect(() => {
     // Check localStorage for early unlock
@@ -134,7 +134,7 @@ export default function LockedIntro({ onUnlock }: LockedIntroProps) {
           {!isUnlocked ? (
             <div className="animate-fadeInUp space-y-4">
               <p className="text-lg font-vintage text-muted-foreground">
-                It unlocks on 28th July... until then, keep wondering 💫
+                It unlocks on 25th September... until then, keep wondering 💫
               </p>
               <div className="bg-magical p-4 rounded-lg shadow-glow">
                 <p className="text-2xl font-script text-primary-foreground font-bold">

@@ -1,26 +1,21 @@
 import { useState } from 'react';
-import LockedIntro from '@/components/LockedIntro';
 import MagicalTransition from '@/components/MagicalTransition';
 import BirthdayWishes from '@/components/BirthdayWishes';
 import ComplimentCards from '@/components/ComplimentCards';
 import MysteryGiftBox from '@/components/MysteryGiftBox';
 import FinalMessage from '@/components/FinalMessage';
 
-type JourneyStage = 'locked' | 'transition' | 'wishes' | 'compliments' | 'gift' | 'final';
+type JourneyStage = 'transition' | 'wishes' | 'compliments' | 'gift' | 'final';
 
 const Index = () => {
-  const [currentStage, setCurrentStage] = useState<JourneyStage>('locked');
-
-  const handleUnlock = () => {
-    setCurrentStage('transition');
-  };
+  const [currentStage, setCurrentStage] = useState<JourneyStage>('transition');
 
   const handleTransitionComplete = () => {
     setCurrentStage('wishes');
   };
 
   const handleRestart = () => {
-    setCurrentStage('locked');
+    setCurrentStage('transition');
   };
 
   const scrollToNext = (stage: JourneyStage) => {
@@ -30,18 +25,13 @@ const Index = () => {
 
   return (
     <div className="relative">
-      {/* Locked intro screen */}
-      {currentStage === 'locked' && (
-        <LockedIntro onUnlock={handleUnlock} />
-      )}
-
       {/* Magical transition */}
       {currentStage === 'transition' && (
         <MagicalTransition onComplete={handleTransitionComplete} />
       )}
 
       {/* Main journey content */}
-      {currentStage !== 'locked' && currentStage !== 'transition' && (
+      {currentStage !== 'transition' && (
         <div className="relative">
           {/* Birthday wishes section */}
           {currentStage === 'wishes' && (
