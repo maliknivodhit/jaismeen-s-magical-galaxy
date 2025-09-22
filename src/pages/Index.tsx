@@ -1,17 +1,11 @@
 import { useState } from 'react';
 import MagicalTransition from '@/components/MagicalTransition';
 import BirthdayWishes from '@/components/BirthdayWishes';
-import TypewriterMessage from '@/components/TypewriterMessage';
 import ComplimentCards from '@/components/ComplimentCards';
-import MemoryCarousel from '@/components/MemoryCarousel';
-import QuizGame from '@/components/QuizGame';
 import MysteryGiftBox from '@/components/MysteryGiftBox';
-import LoveLetterScroll from '@/components/LoveLetterScroll';
 import FinalMessage from '@/components/FinalMessage';
-import InteractiveElements from '@/components/InteractiveElements';
-import MusicPlayer from '@/components/MusicPlayer';
 
-type JourneyStage = 'transition' | 'wishes' | 'typewriter' | 'compliments' | 'memories' | 'quiz' | 'gift' | 'letter' | 'final';
+type JourneyStage = 'transition' | 'wishes' | 'compliments' | 'gift' | 'final';
 
 const Index = () => {
   const [currentStage, setCurrentStage] = useState<JourneyStage>('transition');
@@ -31,12 +25,6 @@ const Index = () => {
 
   return (
     <div className="relative">
-      {/* Interactive floating elements */}
-      <InteractiveElements />
-      
-      {/* Music player */}
-      <MusicPlayer />
-
       {/* Magical transition */}
       {currentStage === 'transition' && (
         <MagicalTransition onComplete={handleTransitionComplete} />
@@ -51,34 +39,10 @@ const Index = () => {
               <BirthdayWishes />
               <div className="text-center py-12">
                 <button
-                  onClick={() => scrollToNext('typewriter')}
-                  className="px-8 py-4 bg-magical text-primary-foreground font-elegant text-lg rounded-full shadow-magical hover:shadow-glow transition-magical animate-float"
-                >
-                  Read My Heart 💌
-                </button>
-              </div>
-            </div>
-          )}
-
-          {/* Typewriter messages section */}
-          {currentStage === 'typewriter' && (
-            <div>
-              <TypewriterMessage 
-                messages={[
-                  "Happy Birthday, Sara! 🎉✨",
-                  "Today is all about celebrating YOU and how amazing you are! 💖",
-                  "Every moment with you feels like magic... ✨💫",
-                  "You light up every room you enter with your beautiful smile 😊",
-                  "Ready for more surprises? Let's continue this magical journey! 🎁"
-                ]}
-                speed={60}
-              />
-              <div className="text-center py-12">
-                <button
                   onClick={() => scrollToNext('compliments')}
                   className="px-8 py-4 bg-magical text-primary-foreground font-elegant text-lg rounded-full shadow-magical hover:shadow-glow transition-magical animate-float"
                 >
-                  What Makes You Special ✨
+                  Continue the Journey ✨
                 </button>
               </div>
             </div>
@@ -88,36 +52,6 @@ const Index = () => {
           {currentStage === 'compliments' && (
             <div>
               <ComplimentCards />
-              <div className="text-center py-12">
-                <button
-                  onClick={() => scrollToNext('memories')}
-                  className="px-8 py-4 bg-magical text-primary-foreground font-elegant text-lg rounded-full shadow-magical hover:shadow-glow transition-magical animate-float"
-                >
-                  Our Beautiful Memories 📸
-                </button>
-              </div>
-            </div>
-          )}
-
-          {/* Memory carousel section */}
-          {currentStage === 'memories' && (
-            <div>
-              <MemoryCarousel />
-              <div className="text-center py-12">
-                <button
-                  onClick={() => scrollToNext('quiz')}
-                  className="px-8 py-4 bg-magical text-primary-foreground font-elegant text-lg rounded-full shadow-magical hover:shadow-glow transition-magical animate-float"
-                >
-                  Let's Play a Game! 🎮
-                </button>
-              </div>
-            </div>
-          )}
-
-          {/* Quiz game section */}
-          {currentStage === 'quiz' && (
-            <div>
-              <QuizGame />
               <div className="text-center py-12">
                 <button
                   onClick={() => scrollToNext('gift')}
@@ -133,21 +67,6 @@ const Index = () => {
           {currentStage === 'gift' && (
             <div>
               <MysteryGiftBox />
-              <div className="text-center py-12">
-                <button
-                  onClick={() => scrollToNext('letter')}
-                  className="px-8 py-4 bg-magical text-primary-foreground font-elegant text-lg rounded-full shadow-magical hover:shadow-glow transition-magical animate-float"
-                >
-                  A Letter for You 💌
-                </button>
-              </div>
-            </div>
-          )}
-
-          {/* Love letter scroll section */}
-          {currentStage === 'letter' && (
-            <div>
-              <LoveLetterScroll />
               <div className="text-center py-12">
                 <button
                   onClick={() => scrollToNext('final')}
