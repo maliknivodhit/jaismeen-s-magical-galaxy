@@ -13,7 +13,7 @@ const queryClient = new QueryClient();
 const App = () => {
   const [locked, setLocked] = useState(() => {
     // Check localStorage for unlock
-    return localStorage.getItem('jaismeen_unlocked') !== 'true';
+    return localStorage.getItem('sara_unlocked') !== 'true';
   });
   const handleUnlock = useCallback(() => setLocked(false), []);
 

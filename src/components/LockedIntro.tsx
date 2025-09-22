@@ -21,7 +21,7 @@ export default function LockedIntro({ onUnlock }: LockedIntroProps) {
 
   useEffect(() => {
     // Check localStorage for early unlock
-    const unlocked = localStorage.getItem('jaismeen_unlocked') === 'true';
+    const unlocked = localStorage.getItem('sara_unlocked') === 'true';
     if (unlocked) {
       setIsUnlocked(true);
       onUnlock();
@@ -39,7 +39,7 @@ export default function LockedIntro({ onUnlock }: LockedIntroProps) {
       if (difference <= 0) {
         setIsUnlocked(true);
         setTimeLeft('🎉 It\'s time! 🎉');
-        localStorage.setItem('jaismeen_unlocked', 'true');
+        localStorage.setItem('sara_unlocked', 'true');
         onUnlock();
       } else {
         const days = Math.floor(difference / (1000 * 60 * 60 * 24));
@@ -56,7 +56,7 @@ export default function LockedIntro({ onUnlock }: LockedIntroProps) {
     if (secretCode === '6125') {
       setIsUnlocked(true);
       setIsDialogOpen(false);
-      localStorage.setItem('jaismeen_unlocked', 'true');
+      localStorage.setItem('sara_unlocked', 'true');
       onUnlock();
     }
   };
@@ -101,7 +101,7 @@ export default function LockedIntro({ onUnlock }: LockedIntroProps) {
             <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
               <DialogTrigger asChild>
                 <button className="text-4xl font-script text-primary hover:text-primary-glow transition-magical cursor-pointer underline decoration-wavy">
-                  Jaismeen
+                  Sara
                 </button>
               </DialogTrigger>
               <DialogContent className="sm:max-w-md">

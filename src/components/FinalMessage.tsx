@@ -10,7 +10,7 @@ export default function FinalMessage({ onRestart }: FinalMessageProps) {
   const handleSaveMemory = () => {
     // Create a simple text version of the birthday message
     const message = `
-🎉 Happy Birthday Jaismeen! 🎉
+🎉 Happy Birthday Sara! 🎉
 
 This magical journey was created with love just for you.
 
@@ -27,7 +27,7 @@ Created on: ${new Date().toLocaleDateString()}
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'Birthday-Memory-for-Jaismeen.txt';
+    a.download = 'Birthday-Memory-for-Sara.txt';
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -38,7 +38,7 @@ Created on: ${new Date().toLocaleDateString()}
     if (navigator.share) {
       try {
         await navigator.share({
-          title: 'A Magical Birthday Journey for Jaismeen',
+          title: 'A Magical Birthday Journey for Sara',
           text: 'Check out this beautiful birthday surprise! 🎉✨',
           url: window.location.href,
         });

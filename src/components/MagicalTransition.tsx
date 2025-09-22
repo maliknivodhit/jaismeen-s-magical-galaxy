@@ -74,7 +74,7 @@ export default function MagicalTransition({ onComplete }: MagicalTransitionProps
               {stage >= 2 && (
                 <div className="animate-fadeInUp space-y-4">
                   <h1 className="text-5xl font-elegant text-primary">
-                    Happy Birthday Jaismeen!
+                    Happy Birthday Sara!
                   </h1>
                   <p className="text-2xl font-script text-muted-foreground">
                     💖✨ Let's go on a little journey... ✨💖
